@@ -1,0 +1,15 @@
+units           metal
+dimension       3
+boundary        p p p
+atom_style      atomic
+
+read_data ../../../sample/data.quartz
+replicate 6 6 6
+
+pair_style mtp/extrapolation/kk ../../../sample/sample.almtp preselected.cfg 0.5 10 chunksize 3000
+pair_coeff      * *
+
+run 0
+velocity all create 300.0 12345 mom yes rot yes
+fix 1 all nve
+run 100
