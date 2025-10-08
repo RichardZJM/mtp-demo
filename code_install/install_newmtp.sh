@@ -3,7 +3,9 @@
 # Configuration
 MAKE_GPU=false  # true -> copy KOKKOS files and build GPU; false -> CPU-only
 NCORES=1    # You can increase the number of cores to go faster. Just be careful on login nodes.
-KOKKOS_ARCH="HOPPER90"  # e.g., HOPPER90 for H100, AMPERE80 for A100
+KOKKOS_ARCH="HOPPER90"  # e.g., HOPPER90 for H100 (Rorqual, Fir, Nibi, Trillium), AMPERE80 for A100 (Narval), VOLTA70 for V100 (Beluga).
+#See lammps build extras for Architecure keywords (personal computer gpu) : https://docs.lammps.org/Build_extras.html
+#See doc for updated allocations :  https://docs.alliancecan.ca/wiki/Allocations_and_compute_scheduling
 package() {
     # Add optional packages here. Examples:
     # make yes-basic
