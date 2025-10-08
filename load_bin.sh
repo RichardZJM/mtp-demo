@@ -29,11 +29,6 @@ create_symlink "$CODE_INSTALL_DIR/mlip-3/bin/mlp" "mlip3"
 create_symlink "$CODE_INSTALL_DIR/mlip3-extract/bin/mlp" "mlip3_extract"
 create_symlink "$CODE_INSTALL_DIR/interface-lammps-mlip-3/lmp_mpi" "lmp_mlip3"
 create_symlink "$CODE_INSTALL_DIR/VENV/bin/activate" "load_venv"
-
-
-# !!!!!! Uncomment based on compilation type !!!!!!
-# CPU
-create_symlink "$CODE_INSTALL_DIR/new-lammps/src/lmp_mpi" "lmp_newmtp"
-# GPU
-# create_symlink "$CODE_INSTALL_DIR/new-lammps/src/lmp_kokkos_cuda_mpi" "lmp_newmtp"
+create_symlink "$CODE_INSTALL_DIR/new-lammps/src/lmp_mpi" "lmp_newcpu"
+create_symlink "$CODE_INSTALL_DIR/new-lammps/src/lmp_kokkos_cuda_mpi" "lmp_newgpu"
 
