@@ -25,3 +25,6 @@ source VENV/bin/activate # Load venv
 #source VENV/bin/activate # Load venv again
 
 python -m pip install -e MTP_basis_optimization[mpi] # Install with MPI support
+
+#If installing on a cluster using a "salloc" then use the version below to use wheelhouse packages for pip
+#python -m pip install -e MTP_basis_optimization[mpi] --no-index 
