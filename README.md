@@ -34,7 +34,6 @@ This repository contains demonstration scripts and data for MLIP-3 functionaliti
      sh load_bin.sh
      ```
    - **Important:** Always run demo scripts from within their respective directories.
-   - If you compiled with GPU support, select the correct executable for the new MTP by editing `load_bin.sh`.
    - You may need to run this once each time you load this demo set.
 
 ## Directory Structure

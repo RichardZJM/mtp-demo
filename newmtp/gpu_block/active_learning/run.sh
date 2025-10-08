@@ -7,4 +7,4 @@ export PATH="$SYMLINK_DIR:$PATH"
 
 
 # Run
-mpirun -np 1 lmp_newmtp -in in.lmp -k on g 1 -sf kk -pk kokkos newton on neigh half
+mpirun -np 1 lmp_newgpu -in in.lmp -k on g 1 -sf kk -pk kokkos newton on neigh half
