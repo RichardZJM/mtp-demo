@@ -21,7 +21,7 @@ Basic trainer initialization complete
         save_to = ni20.almtp
 Successfully wrote 668168 bytes to matrix file: ./out/xtwx.bin
 Successfully wrote 2312 bytes to vector file: ./out/xtwy.bin
-Sum of Squared Ground Truths (yTy): 1308558.948487437795848   !!!!!!
+Sum of Squared Ground Truths (yTWy): 1308558.948487437795848   !!!!!!
 Average number of neighbors = 20.528098   !!!!!!
 Extraction Complete!
 Selection data was not found in MTP and will be set

@@ -19,10 +19,10 @@ if __name__ == "__main__":
     xtwx = np.fromfile(XTWX_FILE, dtype=np.float64)
     xtwy = np.fromfile(XTWY_FILE, dtype=np.float64)
     xtwx = np.reshape(xtwx, (len(xtwy), len(xtwy)))
-    yty = 1308558.94848743616603
+    ytwy = 1308558.94848743616603
 
     original_mtp = parse_mtp_file(ORIG_MTP_FILE)
-    calc = SSECalculator(xtwx, xtwy, yty, regularization=1e-4)
+    calc = SSECalculator(xtwx, xtwy, ytwy, regularization=1e-4)
 
     mask = sample_individual.astype(bool)
     # We need to append a True value for each species since we never prune species coeffs

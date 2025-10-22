@@ -17,7 +17,7 @@ This folder contains scripts and files for extracting problem matrices from the 
    ```sh
    sh run.sh
    ```
-2. This will generate matrix files, $\mathbf{y}^\intercal\mathbf{y}$, and neighborhood size for pruning
+2. This will generate matrix files, $\mathbf{y}^\intercal\mathbf{Wy}$, and neighbor count for pruning
 3. In production, you would use these for the optimization. In this demo, this data has already been prepared in the next step.
 
 ## Details
