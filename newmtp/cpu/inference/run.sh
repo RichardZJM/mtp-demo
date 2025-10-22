@@ -7,4 +7,4 @@ export PATH="$SYMLINK_DIR:$PATH"
 
 
 # Run
-mpirun -np 4  lmp_newmtp -in in.lmp
+mpirun -np 4  lmp_newcpu -in in.lmp

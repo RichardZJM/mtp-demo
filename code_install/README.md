@@ -37,7 +37,7 @@ This guide explains how to install all necessary software for running demo. This
 
 3. **Install New LAMMPS Build (CPU or GPU)**
 
-   - Review `install_newmtp.sh` and set `MODE="cpu"` or `MODE="gpu"` as needed.
+   - Review `install_newmtp.sh` and set `MAKE_GPU=false` or `MAKE_GPU=true` as needed.
    - Run:
      ```sh
      sh install_newmtp.sh

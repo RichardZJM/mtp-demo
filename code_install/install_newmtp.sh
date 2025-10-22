@@ -1,30 +1,33 @@
 #!/bin/bash
 
-# This script contains minimal commands to install the new lammps build with GPU support on Cuda. You may need to modify this sequence for your machine or for AMD.
-# Building with GPU can be very finicky. Most, of the time it is an issue with Kokkos installation, not with the new code. If you have issues read the docs and ask AI.
+# Configuration
+MAKE_GPU=false  # true -> copy KOKKOS files and build GPU; false -> CPU-only
+NCORES=1    # You can increase the number of cores to go faster. Just be careful on login nodes.
+KOKKOS_ARCH="HOPPER90"  # e.g., HOPPER90 for H100 (Rorqual, Fir, Nibi, Trillium), AMPERE80 for A100 (Narval), VOLTA70 for V100 (Beluga).
+#See lammps build extras for Architecure keywords (personal computer gpu) : https://docs.lammps.org/Build_extras.html
+#See doc for updated allocations :  https://docs.alliancecan.ca/wiki/Allocations_and_compute_scheduling
+package() {
+    # Add optional packages here. Examples:
+    # make yes-basic
+    # make yes-most
+    :
+}
 
-# !!!!! If you are on the cluster and building for GPU, you need to module load Cuda or the AMD equivalent !!!!!
-MODE="cpu" #  "cpu" or "gpu": CPU only install or GPU with Kokkos
-NCORES=1 # You can increase the number of cores to go faster. Just be careful on login nodes.
 
+SRCDIR="new-lammps/src"
+cp lammps-mtp-kokkos/LAMMPS/ML-MTP/* "$SRCDIR"/ # Copy source files into src
+cd "$SRCDIR"
+package
+make -j "$NCORES" mpi
+cd ../../
 
-# Run this code from this directory (the one this script is in)
-# ----- Copy src files into lammps -----
-cp lammps-mtp-kokkos/LAMMPS/ML-MTP/* new-lammps/src
-if [ "$MODE" = "gpu" ]; then
-    cp lammps-mtp-kokkos/LAMMPS/KOKKOS/*  new-lammps/src
-fi
-
-cd new-lammps/src
-# It is at this point that you can install other packages. For example:
-# make yes-basic
-# make yes-most
-
-# ----- Compile -----
-if [ "$MODE" = "gpu" ]; then
+if [ "$MAKE_GPU" = true ]; then
+    # You may need to load a different version on the cluster. You may need to install it yourself locally.
+    if ! module load cuda/12 &>/dev/null; then
+        echo "cuda/12 module not available. You may not need to load it (local install) or should attempt a different version. Continuing without it."
+    fi
+    cp lammps-mtp-kokkos/LAMMPS/KOKKOS/* "$SRCDIR"/ # Copy source files into src
+    cd "$SRCDIR"
     make yes-kokkos
-    # Change the KOKKOS_ARCH based on the GPU you compile for. 
-    make -j $NCORES kokkos_cuda_mpi KOKKOS_ARCH=HOPPER90 # HOPPER90 for H100, AMPERE80 for A100
-else
-    make -j $NCORES mpi
+    make -j "$NCORES" kokkos_cuda_mpi KOKKOS_ARCH="$KOKKOS_ARCH"
 fi
